@@ -89,6 +89,13 @@ dmesg | head
 ## Hasil Eksekusi
 Sertakan screenshot hasil percobaan atau diagram:
 ![Screenshot hasil](./screenshots/syscall_Is.png)
+
+Tabel Observasi
+
+| `System Call `| `Keterangan` |
+|-----|-------|
+| close  | perintah ini adalah |
+
 ![Screenshot hasil](./screenshots/syscall_ls%20(1).png)
 ![Screenshot hasil](./screenshots/syscall_Is%20(2).png)
 
