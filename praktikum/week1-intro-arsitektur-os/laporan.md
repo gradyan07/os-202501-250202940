@@ -11,7 +11,10 @@ Topik: "Arsitektur Sistem Operasi dan Kernel"
 ---
 
 ## Tujuan
-> Mahasiswa mampu menjelaskan fungsi utama sistem operasi dan peran kernel serta system call.
+> - Memahami konsep dasar sistem operasi
+- Mengenal komponen sistem operasi
+- Memahami interaksi hardware dan software
+- Mengembangkan kemampuan pemrograman sistem operasi
 
 ---
 
