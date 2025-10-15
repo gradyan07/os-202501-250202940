@@ -79,25 +79,54 @@ git push origin main
 ## Kode / Perintah
 Tuliskan potongan kode atau perintah utama:
 ```bash
-uname -a
-lsmod | head
-dmesg | head
+strace ls
+strace -e
+dmesg | tail -n 10
 ```
 
 ---
 
 ## Hasil Eksekusi
 Sertakan screenshot hasil percobaan atau diagram:
-![Screenshot hasil](./screenshots/syscall_Is.png)
-
-Tabel Observasi
-
-| `System Call `| `Keterangan` |
-|-----|-------|
-| close  | perintah ini adalah |
-
 ![Screenshot hasil](./screenshots/syscall_ls%20(1).png)
-![Screenshot hasil](./screenshots/syscall_Is%20(2).png)
+
+## Eksperimen 1 – Analisis System Call
+
+| No  | Perintah/System Call | Fungsi                           | Output Contoh                         | Tujuan                                                                                      |
+|------|---------------------|---------------------------------|-------------------------------------|----------------------------------------------------------------------------------------------|
+| 1    | execve         |   Menjalankan program baru, seperti menjalankan perintah ls atau bash.                                | execve("/bin/ls", ["ls", "-l"], [/* 24 vars */]) = 0              | menjalankan program baru dan menggantikan image proses saat ini dengan yang baru, memungkinkan eksekusi kode yang berbeda dalam proses yang sama.
+| 2    | brk              | Mengatur alokasi memori dinamis untuk program, sehingga program dapat meminta lebih banyak memori jika diperlukan.         | brk(NULL) = 0x55d0486f3000                         | mengatur batas akhir segmen data proses, sehingga memungkinkan alokasi dan dealokasi memori dinamis (heap) dengan mengubah ukuran area memori yang tersedia untuk program.aaa                                 
+| 3    | mmap               | memetakan file atau perangkat ke dalam ruang memori proses, memungkinkan akses langsung ke file atau perangkat.      | mmap(NULL, 8192, PROT_READPROT_WRITE, MAP_PRIVATE MAP_ANONYMOUS, -1, 0) = 0x7f8d30a53000     | memetakan file ke memori untuk akses yang lebih cepat dan efisien, serta mengalokasikan memori anonim untuk penggunaan proses                                                   
+| 4    | access          |  memeriksa izin akses ke file atau direktori, memastikan bahwa program memiliki hak akses yang diperlukan. | access("/etc/passwd", R_OK) = 0 | Memeriksa apakah process memiliki izin untuk mengakses file atau direktori tertentu.        
+| 5    | openat          |  membuka file relatif terhadap direktori tertentu, memungkinkan akses file yang lebih fleksibel dan aman.                | openat(AT_FDCWD, "/etc/passwd", O_RDONLY) = 3                     | Membuka file relatif terhadap direktori tertentu untuk akses yang lebih fleksibel dan aman.                                        |
+| 6    | fstat         | mendapatkan informasi tentang file yang terbuka, seperti ukuran, izin, dan metadata lainnya. | fstat(3, {st_mode=S_IFREG 0644, st_size=1024, ...}) = 0 |  memperoleh metadata file yang diperlukan oleh program.  |
+
+
+![Screenshot hasil](./screenshots/syscall_Is(2).png)
+## Eksperimen 2 – Menelusuri System Call File I/O
+
+1. Dibuka (Open) 
+Perintah cat membuat panggilan sistem (syscall) ke kernel untuk membuka file.
+Panggilan Sistem: openat(AT_FDCWD, "/etc/passwd", O_RDONLY|O_CLOEXEC) = 3
+Aksi Kernel: Kernel memverifikasi jalur dan izin, lalu mengalokasikan sumber daya untuk file tersebut.
+Hasil: Kernel mengembalikan deskriptor file (FD) 3. FD ini adalah ID yang digunakan oleh program cat untuk merujuk ke /etc/passwd.
+
+2. Dibaca (Read) 
+cat berulang kali meminta kernel untuk menyajikan data file.
+Panggilan Sistem: read(3, "root:x:0:0:root:/root:/bin/bash\n"..., 832) = 832
+Aksi Kernel: Kernel menyalin data file dari disk ke buffer memori, lalu menyediakannya untuk program cat.
+Hasil: 832 byte dibaca. Panggilan read berikutnya (read(3, "", 131072) = 0) mengembalikan 0, yang menandakan bahwa akhir file (EOF) telah tercapai.
+
+3. Ditutup (Close) 
+Setelah selesai, cat memberi tahu kernel bahwa FD tidak lagi diperlukan.
+Panggilan Sistem: close(3) = 0
+Aksi Kernel: Kernel melepaskan sumber daya yang terkait dengan deskriptor file 3.
+Hasil: 0 dikembalikan, menandakan penutupan berhasil. FD 3 menjadi bebas untuk digunakan kembali.
+
+![Screenshot hasil](./screenshots/syscall_ls(3).png)
+## Eksperimen 3 – Mode User vs Kernel
+
+Output dmesg adalah monolog internal kernel tentang kesehatan dan operasinya, sedangkan output program biasa adalah dialog fungsional untuk menyelesaikan tugas pengguna.
 
 ---
 
