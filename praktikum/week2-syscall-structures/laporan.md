@@ -130,7 +130,7 @@ Output dmesg adalah monolog internal kernel tentang kesehatan dan operasinya, se
 
 ---
 
-## Analisis
+## Analisis 1
 - Jelaskan makna hasil percobaan.  
 Percobaan ini juga menunjukkan bagaimana kernel mengelola akses ke sumber daya sistem dan memastikan keamanan serta stabilitas sistem. Dengan menggunakan perintah strace dan dmesg, kita dapat memantau system call dan log kernel untuk memahami bagaimana sistem operasi bekerja.
 
@@ -158,6 +158,28 @@ Perbedaan antara Linux dan Windows dalam struktur sistem call dan kernel interac
 2. Windows menggunakan system call NT API dan kernel hibrid, membuatnya lebih fokus pada kemudahan penggunaan dan kompatibilitas.
 
 Perbedaan ini mempengaruhi kinerja, keamanan, dan fleksibilitas kedua sistem operasi.
+
+## Analisis 2
+
+System call merupakan komponen penting dalam sistem operasi yang memungkinkan program pengguna berinteraksi dengan kernel. Namun, system call juga berperan sebagai penjaga gerbang keamanan antara mode pengguna dan kernel. Dengan menggunakan system call, OS dapat memastikan bahwa permintaan dari program pengguna divalidasi dan dibatasi, sehingga mencegah akses ilegal atau korupsi data.
+
+System call penting untuk keamanan OS karena beberapa alasan. Pertama, system call memungkinkan OS untuk memvalidasi permintaan dari program pengguna sebelum memberikan akses ke sumber daya kernel. Ini mencegah program pengguna menjalankan kode kernel secara sembarangan dan mengakses sumber daya yang tidak diizinkan. Kedua, system call memungkinkan OS untuk membatasi akses ke sumber daya kernel, sehingga mencegah program pengguna mengakses atau memodifikasi data yang tidak diizinkan.
+
+Untuk memastikan transisi user-kernel berjalan aman, OS menggunakan beberapa mekanisme.
+
+ Pertama, OS menggunakan mode CPU yang berbeda untuk mode pengguna dan kernel. Mode kernel memiliki akses penuh ke sumber daya kernel, sedangkan mode pengguna memiliki akses terbatas. Ketika program pengguna melakukan system call, CPU beralih ke mode kernel dan menjalankan kode kernel yang sesuai.
+
+ Kedua, OS melakukan validasi parameter system call untuk mencegah serangan buffer overflow atau eksploitasi lainnya. 
+ Ketiga, OS menyimpan dan mengembalikan status program pengguna sebelum dan setelah menjalankan system call, sehingga memastikan bahwa program pengguna tidak dapat mengakses atau memodifikasi data kernel secara sembarangan.
+
+Contoh system call yang sering digunakan di Linux antara lain open(), read(), write(), dan execve(). System call open() digunakan untuk membuka file atau perangkat, sedangkan read() dan write() digunakan untuk membaca dan menulis data ke file atau perangkat. System call execve() digunakan untuk menjalankan program baru.
+
+Dalam implementasinya, system call di Linux diatur oleh kernel yang bertugas memvalidasi dan menjalankan permintaan system call dari program pengguna. Kernel juga bertanggung jawab untuk menyimpan dan mengembalikan status program pengguna sebelum dan setelah menjalankan system call. Kernel Linux menggunakan tabel system call untuk memetakan nomor system call ke fungsi kernel yang sesuai.
+
+Dengan menggunakan system call, OS dapat memastikan bahwa program pengguna berinteraksi dengan kernel secara aman dan terkendali. System call memungkinkan OS untuk memvalidasi dan membatasi permintaan dari program pengguna, sehingga mencegah akses ilegal atau korupsi data. Oleh karena itu, system call merupakan komponen penting dalam sistem operasi yang memungkinkan keamanan dan stabilitas sistem.
+
+Dalam keseluruhan, system call memainkan peran penting dalam menjaga keamanan dan stabilitas sistem operasi. Dengan menggunakan system call, OS dapat memastikan bahwa program pengguna berinteraksi dengan kernel secara aman dan terkendali, sehingga mencegah akses ilegal atau korupsi data. Oleh karena itu, pemahaman tentang system call sangat penting dalam pengembangan sistem operasi yang aman dan stabil. Dengan demikian, system call dapat membantu meningkatkan keamanan dan stabilitas sistem operasi, serta mencegah serangan keamanan yang dapat membahayakan sistem.
+
 
 ---
 
