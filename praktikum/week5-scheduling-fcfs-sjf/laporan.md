@@ -24,38 +24,136 @@ Tujuan mahasiswa melakukan praktikum tentang Penjadwalan CPU – FCFS dan SJF ad
 ---
 
 ## Langkah Praktikum
-1. Langkah-langkah yang dilakukan.  
-2. Perintah yang dijalankan.  
-3. File dan kode yang dibuat.  
-4. Commit message yang digunakan.
+1. **Siapkan Data Proses**
+   Gunakan tabel proses berikut sebagai contoh (boleh dimodifikasi dengan data baru):
+   | Proses | Burst Time | Arrival Time |
+   |:--:|:--:|:--:|
+   | P1 | 6 | 0 |
+   | P2 | 8 | 1 |
+   | P3 | 7 | 2 |
+   | P4 | 3 | 3 |
+
+2. **Eksperimen 1 – FCFS (First Come First Served)**
+   - Urutkan proses berdasarkan *Arrival Time*.  
+   - Hitung nilai berikut untuk tiap proses:
+     ```
+     Waiting Time (WT) = waktu mulai eksekusi - Arrival Time
+     Turnaround Time (TAT) = WT + Burst Time
+     ```
+   - Hitung rata-rata Waiting Time dan Turnaround Time.  
+   - Buat Gantt Chart sederhana:  
+     ```
+     | P1 | P2 | P3 | P4 |
+     0    6    14   21   24
+     ```
+
+3. **Eksperimen 2 – SJF (Shortest Job First)**
+   - Urutkan proses berdasarkan *Burst Time* terpendek (dengan memperhatikan waktu kedatangan).  
+   - Lakukan perhitungan WT dan TAT seperti langkah sebelumnya.  
+   - Bandingkan hasil FCFS dan SJF pada tabel berikut:
+
+     | Algoritma | Avg Waiting Time | Avg Turnaround Time | Kelebihan | Kekurangan |
+     |------------|------------------|----------------------|------------|-------------|
+     | FCFS | ... | ... | Sederhana dan mudah diterapkan | Tidak efisien untuk proses panjang |
+     | SJF | ... | ... | Optimal untuk job pendek | Menyebabkan *starvation* pada job panjang |
+
+4. **Eksperimen 3 – Visualisasi Spreadsheet (Opsional)**
+   - Gunakan Excel/Google Sheets untuk membuat perhitungan otomatis:
+     - Kolom: Arrival, Burst, Start, Waiting, Turnaround, Finish.
+     - Gunakan formula dasar penjumlahan/subtraksi.
+   - Screenshot hasil perhitungan dan simpan di:
+     ```
+     praktikum/week5-scheduling-fcfs-sjf/screenshots/
+     ```
+
+5. **Analisis**
+   - Bandingkan hasil rata-rata WT dan TAT antara FCFS & SJF.  
+   - Jelaskan kondisi kapan SJF lebih unggul dari FCFS dan sebaliknya.  
+   - Tambahkan kesimpulan singkat di akhir laporan.
+
+6. **Commit & Push**
+   ```bash
+   git add .
+   git commit -m "Minggu 5 - CPU Scheduling FCFS & SJF"
+   git push origin main
+   ```
 
 ---
 
 ## Kode / Perintah
 Tuliskan potongan kode atau perintah utama:
 ```bash
-uname -a
-lsmod | head
-dmesg | head
+Waiting Time (WT) = waktu mulai eksekusi - Arrival Time
+Turnaround Time (TAT) = WT + Burst Time
 ```
 
 ---
 
+## Tugas
+2 skenario FCFS dan SJF :
+
+![Screenshot hasil](./screenshots/Skenario%201.png)
+![Screenshot hasil](./screenshots/Skenario%202.png)
+
+---
 ## Hasil Eksekusi
 Sertakan screenshot hasil percobaan atau diagram:
-![Screenshot hasil](screenshots/example.png)
+![Screenshot hasil](./screenshots/FCFS%20&%20SJF.png)
 
 ---
 
+## Eksperimen 1 FCFS (First Come First Served)
+Urutan proses berdasarkan Arrival Time: P1 -> P2 -> P3 -> P4
+- Tabel FCFS
+![Screenshot hasil](./screenshots/FCFS.png)
+
+- Gantt Chart FCFS:
+```Bash
+| P1 | P2 | P3 | P4 |
+0    6    14   21   24
+```
+## Eksperimen 2 - SJF (Shortest Job First)
+Urutan proses berdasarkan Burst Time terpendek (dengan memperhatikan waktu kedatangan): P1 -> P4 -> P3 -> P2
+- Tabel SJF
+![Screenshot hasil](./screenshots/SJF.png)
+- Gantt Chart SJF:
+```bash
+| P1 | P4 | P3 | P2 |
+0    6    9   16   24
+```
+
+## Perbandingan hasil FCFS dan SJF:
+
+   | Algoritma | Avg Waiting Time | Avg Turnaround Time | Kelebihan | Kekurangan |
+   | ------------|------------------|----------------------|------------|-------------|
+| FCFS | 8,75 | 14,75 | Sederhana dan mudah diterapkan | Tidak efisien untuk proses panjang |
+| SJF | 6,25 | 12,25 | Optimal untuk job pendek | Menyebabkan *starvation* pada job panjang |
+
+---
+
+
 ## Analisis
-- Jelaskan makna hasil percobaan.  
-- Hubungkan hasil dengan teori (fungsi kernel, system call, arsitektur OS).  
-- Apa perbedaan hasil di lingkungan OS berbeda (Linux vs Windows)?  
+- Bandingkan hasil rata-rata WT dan TAT antara FCFS & SJF.  
+Rata-rata Waiting Time (WT):
+- SJF memiliki rata-rata Waiting Time yang lebih rendah (6,25) dibandingkan dengan FCFS (8,75).
+- Perbedaan: $8,75 - 6,25 = \mathbf{2,5}$
+Rata-rata Turnaround Time (TAT):
+- SJF juga memiliki rata-rata Turnaround Time yang lebih rendah (12,25) dibandingkan dengan FCFS (14,75).
+- Perbedaan: $14,75 - 12,25 = \mathbf{2,5}$
+
+- Jelaskan kondisi kapan SJF lebih unggul dari FCFS dan sebaliknya.
+a. unggul dalam efisiensi kinerja (rata-rata WT/TAT rendah), tetapi memiliki masalah kepraktisan (butuh prediksi waktu burst) dan risiko ketidakadilan (starvation).
+b. FCFS unggul dalam keadilan, kepastian (fairness), dan kepraktisan (tidak butuh prediksi), tetapi menghasilkan kinerja rata-rata yang lebih buruk (WT/TAT tinggi).
+
+
+- Tambahkan kesimpulan singkat di akhir laporan.  
 
 ---
 
 ## Kesimpulan
-Tuliskan 2–3 poin kesimpulan dari praktikum ini.
+1. Efisiensi Waktu: SJF memiliki keunggulan performa karena dirancang untuk meminimalkan rata-rata Waiting Time (WT) dan Turnaround Time (TAT), menghasilkan waktu respons yang lebih baik secara keseluruhan.
+2. Keadilan (Fairness) vs. Starvation: FCFS adalah algoritma yang paling adil dan menjamin tidak ada starvation. Sebaliknya, SJF dapat menyebabkan starvation pada proses yang membutuhkan waktu lama.
+3. Kepraktisan: FCFS adalah yang paling praktis karena hanya bergantung pada waktu kedatangan. SJF tidak praktis karena memerlukan prediksi waktu burst (waktu eksekusi) yang akurat.
 
 ---
 
@@ -73,11 +171,8 @@ Tuliskan 2–3 poin kesimpulan dari praktikum ini.
    Kelemahan SJF pada sistem interaktif:
 
 - Dapat menyebabkan starvation untuk proses panjang.
-
 - Sulit memprediksi burst time secara akurat.
-
 - Respons ke pengguna bisa lambat untuk proses panjang.
-
 - Membutuhkan overhead untuk estimasi waktu eksekusi.  
 
 ---
@@ -85,8 +180,9 @@ Tuliskan 2–3 poin kesimpulan dari praktikum ini.
 ## Refleksi Diri
 Tuliskan secara singkat:
 - Apa bagian yang paling menantang minggu ini?  
+Menganalisis
 - Bagaimana cara Anda mengatasinya?  
-
+Memahami caranya
 ---
 
 **Credit:**  
