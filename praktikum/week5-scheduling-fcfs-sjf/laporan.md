@@ -185,7 +185,7 @@ Tuliskan secara singkat:
 - Apa bagian yang paling menantang minggu ini?  
 Menganalisis cara membuat di excel
 - Bagaimana cara Anda mengatasinya?  
-Memahami caranya
+Memahami caranya mengerjakannya
 ---
 
 **Credit:**  
