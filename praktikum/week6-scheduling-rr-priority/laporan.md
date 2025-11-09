@@ -206,7 +206,7 @@ Tuliskan secara singkat:
 - Apa bagian yang paling menantang minggu ini?
 Cara Mengerjakan tugas yang diberikan
 - Bagaimana cara Anda mengatasinya?  
-memahami tugasnya
+memahami tugasnya dan cara mengerjakannya
 ---
 
 **Credit:**  
