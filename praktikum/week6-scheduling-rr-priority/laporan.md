@@ -1,5 +1,5 @@
 
-# Laporan Praktikum Minggu [X]
+# Laporan Praktikum Minggu 6
 Topik: Penjadwalan CPU – Round Robin (RR) dan Priority Scheduling
 
 ---
@@ -104,23 +104,75 @@ TAT[i] = WT[i] + Burst[i]
 ---
 
 ## Hasil Eksekusi
-Sertakan screenshot hasil percobaan atau diagram:
-![Screenshot hasil](screenshots/example.png)
+
+- Tabel Round Robin (RR) & Priority Scheduling
+![Screenshot hasil](screenshots/RR%20&%20Priority%20Scheduling.png)
+
+## Eksperimen 1 Round Robin (RR) 
+
+- Tabel Round Robin (RR)
+
+![Screenshot hasil](screenshots/RR.png)
+- Gantt Chart FCFS:
+```Bash
+| P1 | P2 | P3 | P4 | P1 | P3 | P4 | P4 |
+0    3    6   9   12   15    18   21  24  
+```
+
+## Eksperimen 2 Priority Scheduling
+
+- Tabel Priority Scheduling
+
+![Screenshot hasil](screenshots/Priority%20Scheduling.png)
+- Gantt Chart FCFS:
+```Bash
+| P1 | P2 | P4 | P3 |
+0    5    8   14   22
+```
+## Tabel Perbandingan
+
+| Algoritma | Avg Waiting Time | Avg Turnaround Time | Kelebihan | Kekurangan |
+|------------|------------------|----------------------|------------|-------------|
+| RR | 11,75 | 12,5 | Adil terhadap semua proses | Tidak efisien jika quantum tidak tepat |
+| Priority | 5,25 | 10,75 | Efisien untuk proses penting | Potensi *starvation* pada prioritas rendah |
 
 ---
 
 ## Analisis
-- Jelaskan makna hasil percobaan.  
-- Hubungkan hasil dengan teori (fungsi kernel, system call, arsitektur OS).  
-- Apa perbedaan hasil di lingkungan OS berbeda (Linux vs Windows)?  
+
+### Bandingkan performa dan jelaskan pengaruh time quantum serta prioritas.
+
+**Perbandingan Round Robin vs Priority Scheduling & Pengaruh Parameter**
+
+- **Round Robin (RR)**: Cocok untuk sistem interaktif. Memberi giliran eksekusi merata. Responsif, tapi bisa boros CPU jika time quantum terlalu kecil.
+
+- **Priority Scheduling**: Menjalankan proses berdasarkan prioritas. Efisien untuk proses penting, tapi bisa menyebabkan starvation jika tidak ada mekanisme aging.
+
+- **Pengaruh Time Quantum (RR)**:
+  - Terlalu kecil → banyak context switching, boros sumber daya.
+  - Terlalu besar → proses pendek jadi lambat, mirip FCFS.
+
+- **Pengaruh Prioritas**:
+  - Prioritas tinggi → proses cepat selesai.
+  - Prioritas rendah → bisa tertunda lama tanpa aging.
+
+**Kesimpulan**: RR unggul dalam keadilan dan responsivitas, Priority lebih efisien untuk proses kritis. Pengaturan time quantum dan prioritas sangat memengaruhi performa.
+
+
+
 
 ---
 
 ## Kesimpulan
 
-1. **Round Robin** memberikan keadilan waktu CPU untuk semua proses, namun performanya sangat dipengaruhi oleh ukuran time quantum.  
-2. **Priority Scheduling** lebih efisien untuk proses penting, tetapi bisa menyebabkan starvation pada proses prioritas rendah.  
-3. Pemilihan algoritma harus disesuaikan dengan kebutuhan sistem, apakah mengutamakan keadilan, efisiensi, atau responsivitas.
+**Kesimpulan Praktikum Penjadwalan CPU – RR & Priority**
+
+- **Round Robin (RR)**: Memberi jatah waktu eksekusi bergiliran. Cocok untuk sistem multitasking. Kelemahan: terlalu banyak context switching jika time quantum kecil.
+
+- **Priority Scheduling**: Proses dijalankan berdasarkan prioritas. Efisien untuk proses penting, tapi bisa menyebabkan starvation pada proses prioritas rendah.
+
+- **Kesimpulan**: RR lebih adil dan responsif, Priority lebih efisien untuk proses kritis. Pemilihan algoritma harus disesuaikan dengan kebutuhan sistem.
+
 
 ---
 
@@ -133,34 +185,28 @@ Sertakan screenshot hasil percobaan atau diagram:
 
 2. Apa pengaruh besar/kecilnya time quantum terhadap performa sistem?
 
-   **Pengaruh besar/kecilnya time quantum terhadap performa sistem:**
+   Pengaruh besar/kecilnya time quantum terhadap performa sistem:
 
-- **Time quantum kecil:**  
+- Time quantum kecil:
   + Banyak context switching → overhead tinggi.  
   + Respons cepat, tapi efisiensi rendah.
 
-- **Time quantum besar:**  
+- Time quantum besar:* 
   + Proses pendek harus menunggu lama.  
   + Efisien, tapi respons lambat.
 
-**Kesimpulan:**  
-Time quantum harus seimbang agar sistem tetap responsif dan efisien.
-  
-
-3. Mengapa algoritma Priority dapat menyebabkan starvation?
+  3. Mengapa algoritma Priority dapat menyebabkan starvation?
 
 Karena proses dengan prioritas rendah bisa terus-menerus tertunda jika selalu ada proses dengan prioritas lebih tinggi yang masuk. Akibatnya, proses prioritas rendah tidak pernah mendapat giliran CPU.
-Solusi umum:
-
- 
 
 ---
 
 ## Refleksi Diri
 Tuliskan secara singkat:
-- Apa bagian yang paling menantang minggu ini?  
+- Apa bagian yang paling menantang minggu ini?
+Cara Mengerjakan tugas yang diberikan
 - Bagaimana cara Anda mengatasinya?  
-
+memahami tugasnya
 ---
 
 **Credit:**  

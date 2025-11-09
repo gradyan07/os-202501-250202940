@@ -12,7 +12,9 @@ Topik: Penjadwalan CPU – FCFS dan SJF
 ---
 
 ## Tujuan
+
 Tujuan mahasiswa melakukan praktikum tentang Penjadwalan CPU – FCFS dan SJF adalah untuk memahami, mengimplementasikan, dan menganalisis kinerja kedua algoritma penjadwalan CPU tersebut.
+
 ---
 
 ## Dasar Teori
@@ -24,6 +26,7 @@ Tujuan mahasiswa melakukan praktikum tentang Penjadwalan CPU – FCFS dan SJF ad
 ---
 
 ## Langkah Praktikum
+
 1. **Siapkan Data Proses**
    Gunakan tabel proses berikut sebagai contoh (boleh dimodifikasi dengan data baru):
    | Proses | Burst Time | Arrival Time |
@@ -180,7 +183,7 @@ b. FCFS unggul dalam keadilan, kepastian (fairness), dan kepraktisan (tidak butu
 ## Refleksi Diri
 Tuliskan secara singkat:
 - Apa bagian yang paling menantang minggu ini?  
-Menganalisis
+Menganalisis cara membuat di excel
 - Bagaimana cara Anda mengatasinya?  
 Memahami caranya
 ---
