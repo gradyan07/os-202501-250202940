@@ -1,0 +1,22 @@
+START 
+
+# Preparation
+- garpu 5 
+- piring 1
+
+# Proses
+1. Think
+2. Ready 
+3. P1 - P5 take left fork 
+4. P1 - P5 take right fork # deadlock terjadi
+5. P1 - P5 eat # ini tidak terjadi karena deadlock
+6. P1 - P5 put left fork
+7. P1 - P5 put right fork
+8. Repeat from step 1
+
+FINISH
+
+Deadlock terjadi karena setiap filosofi memegang satu garpu dan menunggu garpu lainnya yang sedang dipegang oleh filosofi lain. 
+Untuk mengatasi deadlock, beberapa strategi dapat diterapkan, seperti:
+1. Membatasi jumlah filosofi yang dapat duduk di meja pada satu waktu (misalnya, hanya 4 dari 5 filosofi yang diizinkan duduk).
+2. Memaksa filosofi untuk mengambil kedua garpu sekaligus atau tidak sama sekali. 
