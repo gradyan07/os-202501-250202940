@@ -199,7 +199,7 @@ FINISH
          Terjadi: Semua filosof secara serentak memegang garpu kiri mereka dan menunggu garpu kanan, membentuk rantai tertutup di mana P1 menunggu P2, P2 menunggu P3, dan seterusnya, hingga P5 menunggu P1.
 
          Solusi: Tetapkan pengurutan sumber daya (resource ordering) yang ketat. Misalnya, semua filosof harus mengambil garpu dengan nomor indeks terkecil terlebih dahulu. Ini memecah rantai sirkular, menghilangkan kemungkinan deadlock.
-         
+
    - Sajikan hasil analisis dalam tabel 
 
       | No. | Kondisi Deadlock | Terjadi di Versi Deadlock (Filosof Makan) | Solusi Utama di Versi Fixed |
