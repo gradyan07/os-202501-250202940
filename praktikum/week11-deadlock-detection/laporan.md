@@ -227,8 +227,9 @@ Karena semua kondisi ada, sistem deadlock. Jika salah satu kondisi tidak terpenu
 ## Refleksi Diri
 Tuliskan secara singkat:
 - Apa bagian yang paling menantang minggu ini?  
+mengerjakannya
 - Bagaimana cara Anda mengatasinya?  
-
+mempelajarinya
 ---
 
 **Credit:**  
