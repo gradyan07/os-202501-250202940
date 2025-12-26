@@ -1,20 +1,22 @@
 
-# Laporan Praktikum Minggu [X]
-Topik: [Tuliskan judul topik, misalnya "Arsitektur Sistem Operasi dan Kernel"]
+# Laporan Praktikum Minggu 12
+Topik: Virtualisasi Menggunakan Virtual Machine
 
 ---
 
 ## Identitas
-- **Nama**  : [Nama Mahasiswa]  
-- **NIM**   : [NIM Mahasiswa]  
-- **Kelas** : [Kelas]
+- **Nama**  : Gradyan Alannahda Shofari 
+- **NIM**   : 250202940 
+- **Kelas** : 1IKRB
 
 ---
 
 ## Tujuan
-Tuliskan tujuan praktikum minggu ini.  
-Contoh:  
-> Mahasiswa mampu menjelaskan fungsi utama sistem operasi dan peran kernel serta system call.
+1. Menginstal perangkat lunak virtualisasi (VirtualBox/VMware).  
+2. Membuat dan menjalankan sistem operasi guest di dalam VM.  
+3. Mengatur konfigurasi resource VM (CPU, RAM, storage).  
+4. Menjelaskan mekanisme proteksi OS melalui virtualisasi.  
+5. Menyusun laporan praktikum instalasi dan konfigurasi VM secara sistematis.
 
 ---
 
